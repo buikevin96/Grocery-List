@@ -58,7 +58,7 @@
                     android:background="@android:drawable/ic_menu_edit"/>
 
                 <Button
-                    android:id="@+id/deleteBUtton"
+                    android:id="@+id/deleteButton"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:background="@android:drawable/ic_delete"/>
