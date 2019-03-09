@@ -35,6 +35,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.execSQL(CREATE_GROCERY_TABLE);
     }
 
+    // Upgrade to newer version
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS "+ Constants.TABLE_NAME);
@@ -100,7 +101,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
         Cursor cursor = db.query(Constants.TABLE_NAME, new String[] {
                 Constants.KEY_ID, Constants.KEY_GROCERY_ITEM, Constants.KEY_QTY_NUMBER,
-                Constants.KEY_DATE_NAME}, null, null, null, null Constants.KEY_DATE_NAME + " DESC");
+                Constants.KEY_DATE_NAME}, null, null, null, null, Constants.KEY_DATE_NAME + " DESC");
 
         if (cursor.moveToFirst()) {
             do {
@@ -122,7 +123,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             }while (cursor.moveToNext());
         }
 
-        return null;
+        return groceryList;
     }
 
     // Update grocery
@@ -133,7 +134,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put(Constants.KEY_GROCERY_ITEM, grocery.getName());
         values.put(Constants.KEY_QTY_NUMBER, grocery.getQuantity());
         values.put(Constants.KEY_DATE_NAME, java.lang.System.currentTimeMillis()); // get system time
-
 
 
         // return updated row
