@@ -1,10 +1,12 @@
 package com.example.kevinbui.mygrocerylist.Data;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.support.annotation.Nullable;
+import android.util.Log;
 
 import com.example.kevinbui.mygrocerylist.Model.Grocery;
 import com.example.kevinbui.mygrocerylist.Util.Constants;
@@ -46,6 +48,17 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     // Add Grocery
     public void AddGrocery(Grocery grocery){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(Constants.KEY_GROCERY_ITEM, grocery.getName());
+        values.put(Constants.KEY_QTY_NUMBER, grocery.getQuantity());
+        values.put(Constants.KEY_DATE_NAME, java.lang.System.currentTimeMillis());
+
+        //Insert the row
+        db.insert(Constants.TABLE_NAME, null, values);
+
+        Log.d("Saved!!", "Saved to DB");
 
     }
 
@@ -114,17 +127,36 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     // Update grocery
     public int updateGrocery(Grocery grocery){
-        return 0;
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(Constants.KEY_GROCERY_ITEM, grocery.getName());
+        values.put(Constants.KEY_QTY_NUMBER, grocery.getQuantity());
+        values.put(Constants.KEY_DATE_NAME, java.lang.System.currentTimeMillis()); // get system time
+
+
+
+        // return updated row
+        return db.update(Constants.TABLE_NAME, values, Constants.KEY_ID + "=?", new String[] {
+                String.valueOf(grocery.getId())
+        });
     }
 
     // Delete grocery
     public void deleteGrocery(int id){
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(Constants.TABLE_NAME, Constants.KEY_ID + "=?",
+                new String[] {String.valueOf(id)});
 
+        db.close();
     }
 
     // Get count
     public int getGroceriesCount(){
+        String countQuery = "SELECT * FROM " + Constants.TABLE_NAME;
+        SQLiteDatabase db = this.getReadableDatabase();
 
-        return 0;
+        Cursor cursor = db.rawQuery(countQuery, null);
+        return cursor.getCount(); // Tells us how many items we have in our table
     }
 }
