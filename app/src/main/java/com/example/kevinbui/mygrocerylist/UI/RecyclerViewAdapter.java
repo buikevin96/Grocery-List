@@ -1,14 +1,17 @@
 package com.example.kevinbui.mygrocerylist.UI;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.telecom.Call;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.kevinbui.mygrocerylist.Activity.DetailsActivity;
 import com.example.kevinbui.mygrocerylist.Model.Grocery;
 import com.example.kevinbui.mygrocerylist.R;
 
@@ -78,8 +81,16 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    // Go to Next Screen
+                    // Go to Next Screen/DetailsActivity
+                    int position = getAdapterPosition();
 
+                    Grocery grocery = groceryItems.get(position);
+                    Intent intent = new Intent(context, DetailsActivity.class); // Takes us to detail activity
+                    intent.putExtra("name", grocery.getName());
+                    intent.putExtra("quantity", grocery.getQuantity());
+                    intent.putExtra("id", grocery.getId());
+                    intent.putExtra("data", grocery.getDateItemAdded());
+                    context.startActivity(intent);
                 }
             });
         }
