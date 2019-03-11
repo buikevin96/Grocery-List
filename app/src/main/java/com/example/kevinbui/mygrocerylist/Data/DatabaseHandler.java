@@ -48,7 +48,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
      */
 
     // Add Grocery
-    public void AddGrocery(Grocery grocery){
+    public void addGrocery(Grocery grocery){
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
