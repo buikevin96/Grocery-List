@@ -1,6 +1,8 @@
 package com.example.kevinbui.mygrocerylist.Activity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
@@ -115,6 +117,15 @@ public class MainActivity extends AppCompatActivity {
 
         Snackbar.make(v, "Item Saved!", Snackbar.LENGTH_LONG).show();
 
-        Log.d("Item Added ID: ", String.valueOf(db.getGroceriesCount()));
+        //Log.d("Item Added ID: ", String.valueOf(db.getGroceriesCount()));
+
+        new Handler().postDelayed(new Runnable(){
+            @Override
+            public void run() {
+                dialog.dismiss();
+                // Start a new activity
+                startActivity(new Intent(MainActivity.this, ListActivity.class));
+            }
+        },1000); // 1 second
     }
 }
