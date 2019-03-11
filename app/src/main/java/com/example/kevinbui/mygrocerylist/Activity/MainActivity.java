@@ -119,6 +119,7 @@ public class MainActivity extends AppCompatActivity {
 
         //Log.d("Item Added ID: ", String.valueOf(db.getGroceriesCount()));
 
+        // Takes us to ListActivity
         new Handler().postDelayed(new Runnable(){
             @Override
             public void run() {
@@ -126,6 +127,6 @@ public class MainActivity extends AppCompatActivity {
                 // Start a new activity
                 startActivity(new Intent(MainActivity.this, ListActivity.class));
             }
-        },1000); // 1 second
+        },1200); // 1 second
     }
 }
