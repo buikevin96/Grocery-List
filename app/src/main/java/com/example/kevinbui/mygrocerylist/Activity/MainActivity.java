@@ -19,6 +19,8 @@ import com.example.kevinbui.mygrocerylist.Data.DatabaseHandler;
 import com.example.kevinbui.mygrocerylist.Model.Grocery;
 import com.example.kevinbui.mygrocerylist.R;
 
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
 
     private AlertDialog.Builder dialogBuilder;
@@ -128,5 +130,15 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this, ListActivity.class));
             }
         },1200); // 1 second
+    }
+
+    public void byPassActivity(){
+        // Checks if database is empty; if not, then we go to
+        // ListActivity and show all added items
+
+        if (db.getGroceriesCount() > 0){
+            startActivity(new Intent(MainActivity.this, ListActivity.class));
+            finish();
+        }
     }
 }

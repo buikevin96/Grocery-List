@@ -73,7 +73,7 @@
                 <Button android:id="@+id/deleteButton"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
-                    android:background="@android:drawable/ic_delete"
+                    android:background="@android:drawable/ic_delete"/>
 
 
             </TableRow>
