@@ -37,6 +37,8 @@ public class MainActivity extends AppCompatActivity {
 
         db = new DatabaseHandler(this); // instantiate database
 
+        byPassActivity();
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
