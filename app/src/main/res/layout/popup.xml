@@ -15,7 +15,7 @@
             android:padding="25dp">
 
             <TextView
-                android:id="@+id/tile"
+                android:id="@+id/title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
@@ -28,7 +28,7 @@
                 android:id="@+id/groceryItem"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/tile"
+                android:layout_below="@+id/title"
                 android:layout_marginTop="15dp"
                 android:hint="@string/hint_item" />
 
